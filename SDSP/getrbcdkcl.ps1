@@ -4,8 +4,11 @@ Add-Type -AssemblyName System.DirectoryServices.Protocols
 # Paramètres
 # ========================================================
 
-$baseDN     = "DC=kbaz,DC=corp"
-$ldapServer = "kbaz.corp:389"
+$domain = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
+$domainName = $domain.Name
+$ldapServer = $domainName
+$baseDN = ($domainName -split '\.' | ForEach-Object { "DC=$_" }) -join ','
+
 $computerName = $env:COMPUTERNAME
 
 # ========================================================
@@ -110,7 +113,6 @@ foreach ($entry in $response.Entries) {
                 Write-Host ""
                 Write-Host "  Type              : $($ace.AceType)"
                 Write-Host "  SID               : $($ace.SecurityIdentifier.Value)"
-
 
                 # ====================================================
                 # Résolution SID -> sAMAccountName
