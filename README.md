@@ -29,6 +29,9 @@ This directory contains three scripts using the .NET `System.DirectoryServices.P
 - Set the RBCD attribute. Some values are currently hardcoded and must be adapted before use.
 - Delete the RBCD attribute.
 
+![Read the RBCD attribute](imag/getrbcd.png)
+![Set the RBCD attribute](images/setrbcd.png)
+
 Shadow Credentials support, involving the `msDS-KeyCredentialLink` attribute, TODO.
 
 ## wldap32.dll — Native WinLDAP API
