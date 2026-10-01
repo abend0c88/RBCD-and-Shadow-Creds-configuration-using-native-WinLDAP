@@ -2,9 +2,7 @@
 
 ## Initial Situation
 
-During a penetration test, I was running Responder on a network where LLMNR was actively used. A system administrator connected to a SQL Server instance using the `sa` account over a connection that did not enforce encryption. Responder captured the SQL authentication credentials, allowing me to access the instance with `sa` privileges.
-
-See Microsoft's documentation on [configuring SQL Server encryption](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/configure-sql-server-encryption).
+During a penetration test, I was running Responder on a network where LLMNR was actively used. A system administrator connected to a SQL Server instance using the `sa` account over a connection that did not enforce encryption ([SQL Server encryption](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/configure-sql-server-encryption)). Responder captured the SQL authentication credentials, allowing me to access the instance with `sa` privileges.
 
 What next? I enabled `xp_cmdshell` to identify the account under which commands were executed. It was `NT SERVICE\MSSQLSERVER`, the virtual service account used by the default SQL Server instance. How could I escalate from this service context to administrative control of the host?
 
